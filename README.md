@@ -9,7 +9,7 @@
   <a href="https://github.com/custom-components/hacs"><img src="https://img.shields.io/badge/HACS-Custom-orange.svg"></a>
 </p>
 
-The `cellar tracker` implementation allows you to integrate your [Cellar Tracker](https://www.cellartracker.com/) data in Home Assistant.
+The `cellar tracker` implementation allows you to integrate your [Cellar Tracker](https://www.cellartracker.com/) data in Home Assistant. The is a fork of the original Home Assistant integration by @ahoernecke which in turn is built upon the cellartracker package by @mathroule.
 
 # Disclaimer
 This is an unofficial integration of Cellar Tracker for Home Assistant, the developer and the contributors are not, in any way, affiliated to CellarTracker! LLC.
@@ -27,7 +27,7 @@ The integration should be available in HACS under Custom Integration, if that is
 
 ![HACS Adding a repository](./img/hacs_1.png)
 
-- **Repository:** https://github.com/ahoernecke/ha_cellar_tracker
+- **Repository:** https://github.com/domhughes/ha_cellar_tracker
 - **Category:** Integration
 
 # Configuration:
