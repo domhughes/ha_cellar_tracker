@@ -55,7 +55,7 @@ To create a new dashboard for CellarTracker! go to Configuration -> Dashboards -
 ![CellarTracker! Dashboard Creation](./img/new_dashboard.png)
 
 ## To populate your Dashboard:
-Note: missing / unavailable entities will through a type error in the When to drink flex-table-card. This may happen because of recategorisation in the cellar tracker database or possibly other causes leading to stranded entities. If this happens just remove the entity from HA and the card will generate.
+Note: missing / unavailable entities will throw a type error in the When to drink flex-table-card. This may happen because of recategorisation in the cellar tracker database or possibly other causes leading to stranded entities. If this happens just remove the entity from HA and the card will generate.
 
 **Glance Card Visualization**
 
