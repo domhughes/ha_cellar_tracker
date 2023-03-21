@@ -88,27 +88,34 @@ class WineCellarData:
       client = cellartracker.CellarTracker(username, password)
       list = client.get_inventory()
       df = pd.DataFrame(list)
+      df = df.fillna("TBD")
+      df["Wine-vintage"] = df['Wine'].astype(str) +" - "+ df["Vintage"]
       df[["Price","Valuation"]] = df[["Price","Valuation"]].apply(pd.to_numeric)
+      
 
-      groups = ['Varietal', 'Country', 'Vintage', 'Producer', 'Type']
+      """groups = ['Varietal', 'Country', 'Vintage', 'Producer', 'Type', 'Location', 'Bin', 'PurchaseDate', 'CT', 'BeginConsume', 'EndConsume']""" 
+      groups = ['Varietal', 'Country', 'Vintage', 'Producer', 'Type', 'Wine-vintage']
 
       for group in groups:
-        group_data = df.groupby(group).agg({'iWine':'count','Valuation':['sum','mean']})
+        if group == "Wine-vintage":
+          group_data = df.groupby(group).agg({'iWine':'count','Valuation':['sum','mean'], 'Producer':'max', 'Location':'max', 'Bin':'max', 'PurchaseDate':'max', 'CT':'max', 'BeginConsume':'max', 'EndConsume':'max'})
+        else:
+          group_data = df.groupby(group).agg({'iWine':'count','Valuation':['sum','mean']})
         group_data.columns = group_data.columns.droplevel(0)
         group_data["%"] = 1
         group_data["%"] = (group_data['count']/group_data['count'].sum() ) * 100
-        group_data.columns = ["count", "value_total", "value_avg", "%"]
+        if group == "Wine-vintage":
+          group_data.columns = ["count", "value_total", "value_avg", "Producer", "Location", "Bin", "PurchaseDate", "CT", "BeginConsume", "EndConsume", "%"]   
+        else:
+          group_data.columns = ["count", "value_total", "value_avg", "%"]
         data[group] = {}
         for row, item in group_data.iterrows():
           data[group][row] = item.to_dict()
           data[group][row]["sub_type"] = row
-
-
+      
 
       data["total_bottles"] = len(df)
       data["total_value"] = df['Valuation'].sum()
       data["average_value"] = df['Valuation'].mean()
       self._data = data
       
-
-    
