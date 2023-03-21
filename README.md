@@ -55,6 +55,7 @@ To create a new dashboard for CellarTracker! go to Configuration -> Dashboards -
 ![CellarTracker! Dashboard Creation](./img/new_dashboard.png)
 
 ## To populate your Dashboard:
+Note: missing / unavailable entities will through a type error in the When to drink flex-table-card. This may happen because of recategorisation in the cellar tracker database or possibly other causes leading to stranded entities. If this happens just remove the entity from HA and the card will generate.
 
 **Glance Card Visualization**
 
@@ -153,5 +154,44 @@ columns:
     modify: parseFloat(x).toFixed(0)
 sort_by: count-
 ```
+
+**Wines with vintage and drinking dates**
+```
+type: custom:flex-table-card
+title: When to drink
+entities:
+  include: sensor.cellar_tracker_wine_vintage_*
+columns:
+  - name: Wine
+    data: sub_type
+  - name: '#'
+    data: count
+    align: right
+  - name: Score
+    data: CT
+    align: right
+    modify: parseFloat(x).toFixed(1)
+  - name: Start Drink Date
+    data: BeginConsume
+    align: right
+  - name: End drinking
+    data: EndConsume
+    align: right
+  - name: Bought
+    data: PurchaseDate
+    align: right
+  - name: Value (ea)
+    data: value_avg
+    align: right
+    modify: parseFloat(x).toFixed(2)
+  - name: Location
+    data: Location
+    align: right
+  - name: Bin
+    data: Bin
+    align: right
+sort_by: BeginConsume+
+```
+
 # Contribute
 Feel free to contribute by opening a PR, issue on this project

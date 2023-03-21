@@ -1,9 +1,9 @@
 {
   "domain": "cellar_tracker",
   "name": "Cellar Tracker",
-  "documentation": "https://github.com/ahoernecke/ha_cellar_tracker",
+  "documentation": "https://github.com/domhughes/ha_cellar_tracker",
   "dependencies": [],
-  "version": "20210413",
-  "codeowners": ["@ahoernecke"],
+  "version": "20230321",
+  "codeowners": ["@ahoernecke","domhughes"],
   "requirements": ["cellartracker"]
 }
